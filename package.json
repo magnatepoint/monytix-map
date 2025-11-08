@@ -1,0 +1,10 @@
+{
+  "name": "monytix-map",
+  "version": "1.0.0",
+  "description": "Monytix - Financial Command Center",
+  "scripts": {
+    "build": "bash monytix/build-cloudflare.sh"
+  },
+  "private": true
+}
+
