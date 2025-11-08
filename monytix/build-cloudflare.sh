@@ -66,7 +66,10 @@ flutter pub get
 
 # Build web app
 echo "🔨 Building Flutter web app..."
-flutter build web --release
+echo "📁 Current directory: $(pwd)"
+echo "📄 Checking for main.dart:"
+ls -la lib/main.dart || echo "❌ main.dart not found in lib/"
+flutter build web --release --target=lib/main.dart
 
 # Add Cloudflare Pages _redirects file
 echo "📝 Adding _redirects file for SPA routing..."
