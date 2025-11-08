@@ -59,6 +59,10 @@ flutter --version
 # Navigate to project directory
 cd "$PROJECT_DIR"
 echo "📁 Working directory: $(pwd)"
+echo "📂 Verifying directory structure:"
+ls -la | head -20
+echo "📂 Checking lib directory:"
+ls -la lib/ 2>/dev/null | head -10 || echo "lib/ directory not found"
 
 # Get Flutter dependencies
 echo "📦 Getting Flutter dependencies..."
