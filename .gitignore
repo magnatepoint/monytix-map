@@ -10,7 +10,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# Only ignore Python lib directories, not Flutter lib/
+/lib/
 lib64/
 parts/
 sdist/
