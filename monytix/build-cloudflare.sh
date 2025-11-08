@@ -6,6 +6,28 @@ set -e
 
 echo "🚀 Starting Flutter web build for Cloudflare Pages..."
 
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_DIR="$SCRIPT_DIR"
+
+# If script is in monytix/, use that. Otherwise, try to find monytix directory
+if [ ! -f "$PROJECT_DIR/pubspec.yaml" ]; then
+  # Script might be called from repo root
+  if [ -d "monytix" ]; then
+    PROJECT_DIR="$(pwd)/monytix"
+  elif [ -d "$SCRIPT_DIR/../monytix" ]; then
+    PROJECT_DIR="$SCRIPT_DIR/../monytix"
+  else
+    echo "❌ Error: Cannot find monytix directory"
+    echo "Current directory: $(pwd)"
+    echo "Script directory: $SCRIPT_DIR"
+    ls -la
+    exit 1
+  fi
+fi
+
+echo "📁 Project directory: $PROJECT_DIR"
+
 # Install Flutter
 echo "📦 Installing Flutter..."
 FLUTTER_VERSION="3.24.0"
@@ -24,8 +46,9 @@ export PATH="$FLUTTER_SDK_PATH/bin:$PATH"
 # Verify Flutter installation
 flutter --version
 
-# Navigate to monytix directory
-cd monytix
+# Navigate to project directory
+cd "$PROJECT_DIR"
+echo "📁 Working directory: $(pwd)"
 
 # Get Flutter dependencies
 echo "📦 Getting Flutter dependencies..."
