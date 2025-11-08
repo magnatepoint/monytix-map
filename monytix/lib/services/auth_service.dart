@@ -71,7 +71,8 @@ class AuthService {
         );
 
         debugPrint('🌐 OAuth sign-in initiated with redirectTo: $redirectUrl');
-        debugPrint('🌐 If you see custom scheme errors, check Supabase Dashboard Site URL');
+        debugPrint(
+            '🌐 If you see custom scheme errors, check Supabase Dashboard Site URL');
       } else {
         // For mobile, use custom URL scheme
         final redirectUrl = _getRedirectUrl();
