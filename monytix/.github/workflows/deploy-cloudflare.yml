@@ -27,9 +27,16 @@ jobs:
           flutter pub get
       
       - name: Build web
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL || 'https://backend.mallaapp.org' }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || 'https://vwagtikpxbhjrffolrqn.supabase.co' }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY || '' }}
         run: |
           cd monytix
-          flutter build web --release
+          flutter build web --release \
+            --dart-define=API_BASE_URL=$API_BASE_URL \
+            --dart-define=SUPABASE_URL=$SUPABASE_URL \
+            --dart-define=SUPABASE_PUBLISHABLE_KEY=$SUPABASE_PUBLISHABLE_KEY
       
       - name: Add Cloudflare Pages _redirects
         run: |
@@ -41,6 +48,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: monytix
+          projectName: monytix-map
           directory: monytix/build/web
 
