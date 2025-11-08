@@ -576,7 +576,8 @@ class _LoginPageState extends State<LoginPage> {
                                         vertical: 16,
                                       ),
                                       side: BorderSide(
-                                        color: AppTheme.goldPrimary.withOpacity(0.3),
+                                        color: AppTheme.goldPrimary
+                                            .withOpacity(0.3),
                                         width: 2,
                                       ),
                                       shape: RoundedRectangleBorder(

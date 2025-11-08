@@ -50,11 +50,19 @@ class AuthService {
 
         // Use the HTTP redirect URL explicitly to override any auto-detection
         // IMPORTANT: The redirect URL must be registered in Supabase Dashboard
-        await supabase.auth.signInWithOAuth(
+        // Also ensure Site URL in Supabase Dashboard is set to web URL, not custom scheme
+        debugPrint('🌐 Calling signInWithOAuth with redirectTo: $redirectUrl');
+        debugPrint('🌐 Current origin: ${Uri.base.origin}');
+        debugPrint('🌐 Full URL: ${Uri.base}');
+        
+        final response = await supabase.auth.signInWithOAuth(
           OAuthProvider.google,
           redirectTo: redirectUrl,
           authScreenLaunchMode: LaunchMode.externalApplication,
         );
+        
+        debugPrint('🌐 OAuth response: $response');
+        debugPrint('🌐 OAuth URL: ${response.url}');
       } else {
         // For mobile, use custom URL scheme
         final redirectUrl = _getRedirectUrl();
