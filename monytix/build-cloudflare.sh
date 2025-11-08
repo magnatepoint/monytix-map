@@ -8,20 +8,28 @@ echo "🚀 Starting Flutter web build for Cloudflare Pages..."
 
 # Get the directory where this script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "📁 Script directory: $SCRIPT_DIR"
+echo "📁 Current directory: $(pwd)"
+
+# The script is in monytix/build-cloudflare.sh, so monytix is the parent
 PROJECT_DIR="$SCRIPT_DIR"
 
-# If script is in monytix/, use that. Otherwise, try to find monytix directory
+# Check if we're in the monytix directory (script is in monytix/build-cloudflare.sh)
 if [ ! -f "$PROJECT_DIR/pubspec.yaml" ]; then
-  # Script might be called from repo root
-  if [ -d "monytix" ]; then
-    PROJECT_DIR="$(pwd)/monytix"
-  elif [ -d "$SCRIPT_DIR/../monytix" ]; then
-    PROJECT_DIR="$SCRIPT_DIR/../monytix"
+  # Try parent directory (if script is in monytix/scripts/)
+  if [ -f "$SCRIPT_DIR/../pubspec.yaml" ]; then
+    PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+  # Try finding monytix from current directory
+  elif [ -d "$(pwd)/monytix" ] && [ -f "$(pwd)/monytix/pubspec.yaml" ]; then
+    PROJECT_DIR="$(cd "$(pwd)/monytix" && pwd)"
   else
-    echo "❌ Error: Cannot find monytix directory"
+    echo "❌ Error: Cannot find monytix directory with pubspec.yaml"
     echo "Current directory: $(pwd)"
     echo "Script directory: $SCRIPT_DIR"
+    echo "Listing current directory:"
     ls -la
+    echo "Listing script directory:"
+    ls -la "$SCRIPT_DIR"
     exit 1
   fi
 fi
