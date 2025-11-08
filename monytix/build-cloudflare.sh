@@ -39,10 +39,8 @@ echo "📁 Project directory: $PROJECT_DIR"
 
 # Install Flutter
 echo "📦 Installing Flutter..."
-# Use latest stable Flutter which includes Dart 3.7.2+
-# Flutter 3.24.5+ includes Dart 3.5.0, but we need 3.7.2+
-# Using Flutter 3.27.0 (or latest stable) for Dart 3.7.2+ support
-FLUTTER_VERSION="3.27.0"
+# Use Flutter 3.24.0 which includes Dart 3.5.0 (matches pubspec.yaml requirement)
+FLUTTER_VERSION="3.24.0"
 FLUTTER_SDK_PATH="/opt/buildhome/flutter"
 
 if [ ! -d "$FLUTTER_SDK_PATH" ]; then
