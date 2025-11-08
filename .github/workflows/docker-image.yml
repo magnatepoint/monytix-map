@@ -1,14 +1,15 @@
 name: Publish Backend Image
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - Dockerfile
-      - '**/*.py'
-      - '.github/workflows/docker-image.yml'
-  workflow_dispatch:
+  # Disabled - uncomment to enable Docker image builds
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - Dockerfile
+  #     - '**/*.py'
+  #     - '.github/workflows/docker-image.yml'
+  workflow_dispatch:  # Only run manually
 
 env:
   REGISTRY: ghcr.io

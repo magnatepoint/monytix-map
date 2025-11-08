@@ -1,13 +1,14 @@
 name: Backend Docker Image
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'backend/**'
-      - '.github/workflows/backend-docker.yml'
-  workflow_dispatch:
+  # Disabled - uncomment to enable Docker image builds
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'backend/**'
+  #     - '.github/workflows/backend-docker.yml'
+  workflow_dispatch:  # Only run manually
 
 env:
   REGISTRY: ghcr.io
