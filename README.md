@@ -231,3 +231,4 @@ MIT
 
 Contributions welcome! Please open an issue or submit a PR.
 # monytix-map
+# Force rebuild
