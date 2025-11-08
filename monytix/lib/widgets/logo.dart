@@ -55,7 +55,7 @@ class _MonytixIcon extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: (color ?? AppTheme.goldPrimary).withValues(alpha: 0.3),
+            color: (color ?? AppTheme.goldPrimary).withOpacity( 0.3),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -82,7 +82,7 @@ class _MonytixIconPainter extends CustomPainter {
     // Top-left quadrant - bright yellow/golden
     final topLeftPaint = Paint()
       ..color = color != null
-          ? color!.withValues(alpha: 0.8)
+          ? color!.withOpacity( 0.8)
           : const Color(0xFFFFD700);
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),

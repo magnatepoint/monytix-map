@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: 200,
                 height: 200,
                 decoration: BoxDecoration(
-                  color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                  color: AppTheme.goldPrimary.withOpacity( 0.1),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -245,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: 200,
                 height: 200,
                 decoration: BoxDecoration(
-                  color: AppTheme.info.withValues(alpha: 0.1),
+                  color: AppTheme.info.withOpacity( 0.1),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -263,7 +263,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: AppTheme.darkCard.withValues(alpha: 0.5),
+                              color: AppTheme.darkCard.withOpacity( 0.5),
                               borderRadius: BorderRadius.circular(24),
                               boxShadow: [
                                 BoxShadow(
@@ -338,7 +338,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Container(
                             padding: const EdgeInsets.all(24),
                             decoration: BoxDecoration(
-                              color: AppTheme.darkCard.withValues(alpha: 0.8),
+                              color: AppTheme.darkCard.withOpacity( 0.8),
                               borderRadius: BorderRadius.circular(24),
                               border: Border.all(
                                 color: AppTheme.goldPrimary.withValues(
@@ -348,7 +348,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.3),
+                                  color: Colors.black.withOpacity( 0.3),
                                   blurRadius: 20,
                                   offset: const Offset(0, 8),
                                 ),
@@ -481,7 +481,7 @@ class _LoginPageState extends State<LoginPage> {
                                       Expanded(
                                         child: Divider(
                                           color: AppTheme.goldPrimary
-                                              .withValues(alpha: 0.2),
+                                              .withOpacity( 0.2),
                                         ),
                                       ),
                                       Padding(
@@ -499,7 +499,7 @@ class _LoginPageState extends State<LoginPage> {
                                       Expanded(
                                         child: Divider(
                                           color: AppTheme.goldPrimary
-                                              .withValues(alpha: 0.2),
+                                              .withOpacity( 0.2),
                                         ),
                                       ),
                                     ],

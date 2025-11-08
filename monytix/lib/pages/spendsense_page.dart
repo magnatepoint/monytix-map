@@ -818,13 +818,13 @@ class _AddTransactionDialogState extends State<_AddTransactionDialog> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -863,13 +863,13 @@ class _AddTransactionDialogState extends State<_AddTransactionDialog> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -905,13 +905,13 @@ class _AddTransactionDialogState extends State<_AddTransactionDialog> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -940,13 +940,13 @@ class _AddTransactionDialogState extends State<_AddTransactionDialog> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -1018,13 +1018,13 @@ class _AddTransactionDialogState extends State<_AddTransactionDialog> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -1139,7 +1139,7 @@ class _AddTransactionDialogState extends State<_AddTransactionDialog> {
                       color: AppTheme.darkSurfaceVariant,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: AppTheme.goldPrimary.withValues(alpha: 0.1),
+                        color: AppTheme.goldPrimary.withOpacity( 0.1),
                       ),
                     ),
                     child: Row(
@@ -1171,7 +1171,7 @@ class _AddTransactionDialogState extends State<_AddTransactionDialog> {
                         style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           side: BorderSide(
-                            color: AppTheme.goldPrimary.withValues(alpha: 0.3),
+                            color: AppTheme.goldPrimary.withOpacity( 0.3),
                             width: 1.5,
                           ),
                           shape: RoundedRectangleBorder(

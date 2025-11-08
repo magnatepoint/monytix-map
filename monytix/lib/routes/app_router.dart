@@ -14,24 +14,32 @@ class AppRouter {
   static GoRouter createRouter(AuthProvider authProvider) {
     // Determine initial location based on auth state
     // Check both provider and Supabase directly (for release builds)
-    final supabase = Supabase.instance.client;
-    final supabaseSession = supabase.auth.currentSession;
-    final supabaseUser = supabase.auth.currentUser;
+    String initialLocation = '/login';
 
-    final providerLoggedIn =
-        authProvider.user != null && authProvider.session != null;
-    final supabaseLoggedIn = supabaseUser != null && supabaseSession != null;
-    final isLoggedIn = providerLoggedIn || supabaseLoggedIn;
+    try {
+      final supabase = Supabase.instance.client;
+      final supabaseSession = supabase.auth.currentSession;
+      final supabaseUser = supabase.auth.currentUser;
 
-    final initialLocation = isLoggedIn ? '/' : '/login';
+      final providerLoggedIn =
+          authProvider.user != null && authProvider.session != null;
+      final supabaseLoggedIn = supabaseUser != null && supabaseSession != null;
+      final isLoggedIn = providerLoggedIn || supabaseLoggedIn;
 
-    debugPrint(
-      'AppRouter: Initial location=$initialLocation, providerLoggedIn=$providerLoggedIn, supabaseLoggedIn=$supabaseLoggedIn, user=${authProvider.user?.email ?? supabaseUser?.email}',
-    );
+      initialLocation = isLoggedIn ? '/' : '/login';
 
-    // If Supabase has session but provider doesn't, update provider
-    if (supabaseLoggedIn && !providerLoggedIn) {
-      authProvider.refreshFromSupabase();
+      debugPrint(
+        'AppRouter: Initial location=$initialLocation, providerLoggedIn=$providerLoggedIn, supabaseLoggedIn=$supabaseLoggedIn, user=${authProvider.user?.email ?? supabaseUser?.email}',
+      );
+
+      // If Supabase has session but provider doesn't, update provider
+      if (supabaseLoggedIn && !providerLoggedIn) {
+        authProvider.refreshFromSupabase();
+      }
+    } catch (e) {
+      debugPrint('AppRouter: Error checking auth state: $e');
+      // Default to login page if there's an error
+      initialLocation = '/login';
     }
 
     return GoRouter(

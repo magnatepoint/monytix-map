@@ -19,7 +19,7 @@ class TransactionListItem extends StatelessWidget {
         color: AppTheme.darkCard,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppTheme.goldPrimary.withValues(alpha: 0.05),
+          color: AppTheme.goldPrimary.withOpacity( 0.05),
           width: 1,
         ),
       ),
@@ -41,15 +41,15 @@ class TransactionListItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        color.withValues(alpha: 0.2),
-                        color.withValues(alpha: 0.1),
+                        color.withOpacity( 0.2),
+                        color.withOpacity( 0.1),
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: color.withValues(alpha: 0.3),
+                      color: color.withOpacity( 0.3),
                       width: 1,
                     ),
                   ),
@@ -137,7 +137,7 @@ class TransactionListItem extends StatelessWidget {
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: color.withValues(alpha: 0.15),
+                        color: color.withOpacity( 0.15),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(

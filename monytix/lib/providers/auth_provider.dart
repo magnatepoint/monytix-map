@@ -9,6 +9,11 @@ class AuthProvider extends ChangeNotifier {
   bool _loading = true;
 
   AuthProvider(this._authService) {
+    // Initialize synchronously first, then async
+    _session = _authService.currentSession;
+    _user = _authService.currentUser;
+    _loading = false;
+    // Then initialize async parts
     _init();
   }
 
@@ -31,22 +36,22 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> _init() async {
-    // Initialize with current session synchronously
-    _session = _authService.currentSession;
-    _user = _authService.currentUser;
-    
     debugPrint('AuthProvider _init: session=${_session != null}, user=${_user?.email}');
     
     // In release builds, session might not be immediately available
     // Wait a bit and check again
     await Future.delayed(const Duration(milliseconds: 200));
-    _session = _authService.currentSession;
-    _user = _authService.currentUser;
     
-    debugPrint('AuthProvider _init after delay: session=${_session != null}, user=${_user?.email}');
+    // Update session and user if they changed
+    final newSession = _authService.currentSession;
+    final newUser = _authService.currentUser;
     
-    _loading = false;
-    notifyListeners();
+    if (_session != newSession || _user != newUser) {
+      _session = newSession;
+      _user = newUser;
+      debugPrint('AuthProvider _init after delay: session=${_session != null}, user=${_user?.email}');
+      notifyListeners();
+    }
 
     // Listen for auth state changes (including deep link callbacks)
     _authService.authStateChanges.listen((state) {

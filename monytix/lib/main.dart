@@ -25,6 +25,7 @@ void main() async {
   }
 
   // Initialize Supabase with error handling
+  SupabaseClient supabase;
   try {
     await Supabase.initialize(
       url: Env.supabaseUrl.isEmpty 
@@ -40,6 +41,7 @@ void main() async {
         logLevel: RealtimeLogLevel.info,
       ),
     );
+    supabase = Supabase.instance.client;
     AppLogger.success('Supabase initialized successfully');
   } catch (e, stackTrace) {
     AppLogger.error(
@@ -48,29 +50,60 @@ void main() async {
       stackTrace: stackTrace,
     );
     AppLogger.warning('Make sure SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY are set correctly');
-    // Continue anyway - errors will be shown in UI
+    // Try to get instance anyway (might be partially initialized)
+    try {
+      supabase = Supabase.instance.client;
+    } catch (_) {
+      AppLogger.error('Failed to get Supabase instance');
+      // If we can't get Supabase, we can't continue - show error and exit
+      runApp(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Failed to initialize Supabase',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text('Please check your configuration'),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+      return;
+    }
   }
 
   // Create services and providers
-  final supabase = Supabase.instance.client;
   final authService = AuthService(supabase);
   final authProvider = AuthProvider(authService);
   
-  // Wait for auth provider to initialize and restore session
-  // In release builds, session restoration might take longer
-  await Future.delayed(const Duration(milliseconds: 500));
+  // Give the auth provider a moment to initialize
+  // The _init() method runs asynchronously, so we wait a bit
+  await Future.delayed(const Duration(milliseconds: 300));
   
-  // Verify session is restored and update auth provider
-  final currentSession = supabase.auth.currentSession;
-  final currentUser = supabase.auth.currentUser;
-  AppLogger.info('App start: session=${currentSession != null}, user=${currentUser?.email}');
-  
-  // Force update auth provider with current session (in case it wasn't restored)
-  if (currentSession != null && currentUser != null) {
-    // The auth provider should have this, but ensure it's set
-    await Future.delayed(const Duration(milliseconds: 100));
+  // Verify session is restored
+  try {
+    final currentSession = supabase.auth.currentSession;
+    final currentUser = supabase.auth.currentUser;
+    AppLogger.info('App start: session=${currentSession != null}, user=${currentUser?.email}');
+  } catch (e, stackTrace) {
+    AppLogger.error(
+      'Error accessing Supabase auth',
+      error: e,
+      stackTrace: stackTrace,
+    );
+    // Continue anyway - the app should still be able to show login page
   }
 
+  // Run the app - use runZonedGuarded for better error handling
   runApp(MyApp(authProvider: authProvider));
 }
 
