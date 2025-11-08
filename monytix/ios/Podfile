@@ -1,5 +1,5 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '12.0'
+# Define a global platform for your project
+platform :ios, '12.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -39,5 +39,22 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+    # Set minimum deployment target to 12.0 for all pods
+    target.build_configurations.each do |config|
+      if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 12.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      end
+      # Suppress warnings about double-quoted includes in framework headers
+      # This is a common issue with SDWebImage and other pods
+      # The warning is about using "Header.h" instead of <Header.h> in framework headers
+      # Set the build setting to suppress this warning
+      config.build_settings['CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER'] = 'NO'
+      
+      # Add compiler flag to suppress this specific warning
+      other_cflags = config.build_settings['OTHER_CFLAGS'] || []
+      other_cflags = [other_cflags] unless other_cflags.is_a?(Array)
+      other_cflags << '-Wno-quoted-include-in-framework-header'
+      config.build_settings['OTHER_CFLAGS'] = other_cflags
+    end
   end
 end

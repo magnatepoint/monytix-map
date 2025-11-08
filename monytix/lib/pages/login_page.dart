@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: 200,
                 height: 200,
                 decoration: BoxDecoration(
-                  color: AppTheme.goldPrimary.withOpacity( 0.1),
+                  color: AppTheme.goldPrimary.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -245,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: 200,
                 height: 200,
                 decoration: BoxDecoration(
-                  color: AppTheme.info.withOpacity( 0.1),
+                  color: AppTheme.info.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -263,13 +263,11 @@ class _LoginPageState extends State<LoginPage> {
                           child: Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: AppTheme.darkCard.withOpacity( 0.5),
+                              color: AppTheme.darkCard.withOpacity(0.5),
                               borderRadius: BorderRadius.circular(24),
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppTheme.goldPrimary.withValues(
-                                    alpha: 0.2,
-                                  ),
+                                  color: AppTheme.goldPrimary.withOpacity(0.2),
                                   blurRadius: 20,
                                   offset: const Offset(0, 8),
                                 ),
@@ -291,30 +289,29 @@ class _LoginPageState extends State<LoginPage> {
                                   style: Theme.of(
                                     context,
                                   ).textTheme.displayMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppTheme.textPrimary,
-                                    letterSpacing: 0.5,
-                                  ),
+                                        fontWeight: FontWeight.bold,
+                                        color: AppTheme.textPrimary,
+                                        letterSpacing: 0.5,
+                                      ),
                                   children: [
                                     const TextSpan(text: 'Welcome to '),
                                     TextSpan(
                                       text: 'Monytix',
                                       style: TextStyle(
-                                        foreground:
-                                            Paint()
-                                              ..shader = const LinearGradient(
-                                                colors: [
-                                                  AppTheme.goldSecondary,
-                                                  AppTheme.goldPrimary,
-                                                ],
-                                              ).createShader(
-                                                const Rect.fromLTWH(
-                                                  0,
-                                                  0,
-                                                  200,
-                                                  70,
-                                                ),
-                                              ),
+                                        foreground: Paint()
+                                          ..shader = const LinearGradient(
+                                            colors: [
+                                              AppTheme.goldSecondary,
+                                              AppTheme.goldPrimary,
+                                            ],
+                                          ).createShader(
+                                            const Rect.fromLTWH(
+                                              0,
+                                              0,
+                                              200,
+                                              70,
+                                            ),
+                                          ),
                                       ),
                                     ),
                                   ],
@@ -324,7 +321,9 @@ class _LoginPageState extends State<LoginPage> {
                               Text(
                                 'Your AI-powered financial command center',
                                 textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.bodyLarge
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
                                     ?.copyWith(color: AppTheme.textSecondary),
                               ),
                             ],
@@ -338,17 +337,15 @@ class _LoginPageState extends State<LoginPage> {
                           child: Container(
                             padding: const EdgeInsets.all(24),
                             decoration: BoxDecoration(
-                              color: AppTheme.darkCard.withOpacity( 0.8),
+                              color: AppTheme.darkCard.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(24),
                               border: Border.all(
-                                color: AppTheme.goldPrimary.withValues(
-                                  alpha: 0.1,
-                                ),
+                                color: AppTheme.goldPrimary.withOpacity(0.1),
                                 width: 1,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity( 0.3),
+                                  color: Colors.black.withOpacity(0.3),
                                   blurRadius: 20,
                                   offset: const Offset(0, 8),
                                 ),
@@ -437,22 +434,21 @@ class _LoginPageState extends State<LoginPage> {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child:
-                                        _isLoading
-                                            ? const SizedBox(
-                                              height: 20,
-                                              width: 20,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                              ),
-                                            )
-                                            : Text(
-                                              _isSignUp ? 'Sign Up' : 'Sign In',
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                    child: _isLoading
+                                        ? const SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2,
                                             ),
+                                          )
+                                        : Text(
+                                            _isSignUp ? 'Sign Up' : 'Sign In',
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                   ),
                                   const SizedBox(height: 16),
 
@@ -481,7 +477,7 @@ class _LoginPageState extends State<LoginPage> {
                                       Expanded(
                                         child: Divider(
                                           color: AppTheme.goldPrimary
-                                              .withOpacity( 0.2),
+                                              .withOpacity(0.2),
                                         ),
                                       ),
                                       Padding(
@@ -499,7 +495,7 @@ class _LoginPageState extends State<LoginPage> {
                                       Expanded(
                                         child: Divider(
                                           color: AppTheme.goldPrimary
-                                              .withOpacity( 0.2),
+                                              .withOpacity(0.2),
                                         ),
                                       ),
                                     ],
@@ -508,64 +504,62 @@ class _LoginPageState extends State<LoginPage> {
 
                                   // Google Sign In Button
                                   OutlinedButton.icon(
-                                    onPressed:
-                                        authProvider.loading || _isLoading
-                                            ? null
-                                            : () async {
-                                              try {
-                                                await authProvider
-                                                    .signInWithGoogle();
-                                              } catch (e) {
-                                                if (!mounted ||
-                                                    !context.mounted)
-                                                  return;
+                                    onPressed: authProvider.loading ||
+                                            _isLoading
+                                        ? null
+                                        : () async {
+                                            try {
+                                              await authProvider
+                                                  .signInWithGoogle();
+                                            } catch (e) {
+                                              if (!mounted || !context.mounted)
+                                                return;
 
-                                                // Parse error message for better user feedback
-                                                String errorMessage =
-                                                    e.toString();
-                                                if (errorMessage.contains(
-                                                      'Failed host lookup',
-                                                    ) ||
-                                                    errorMessage.contains(
-                                                      'No address associated with hostname',
-                                                    )) {
-                                                  errorMessage =
-                                                      'Network error: Please check your internet connection and try again.';
-                                                } else if (errorMessage
-                                                    .contains(
-                                                      'User cancelled',
-                                                    )) {
-                                                  errorMessage =
-                                                      'Sign in cancelled.';
-                                                }
+                                              // Parse error message for better user feedback
+                                              String errorMessage =
+                                                  e.toString();
+                                              if (errorMessage.contains(
+                                                    'Failed host lookup',
+                                                  ) ||
+                                                  errorMessage.contains(
+                                                    'No address associated with hostname',
+                                                  )) {
+                                                errorMessage =
+                                                    'Network error: Please check your internet connection and try again.';
+                                              } else if (errorMessage.contains(
+                                                'User cancelled',
+                                              )) {
+                                                errorMessage =
+                                                    'Sign in cancelled.';
+                                              }
 
-                                                if (context.mounted) {
-                                                  ScaffoldMessenger.of(
-                                                    context,
-                                                  ).showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        errorMessage,
-                                                      ),
-                                                      backgroundColor:
-                                                          AppTheme.error,
-                                                      behavior:
-                                                          SnackBarBehavior
-                                                              .floating,
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              12,
-                                                            ),
-                                                      ),
-                                                      duration: const Duration(
-                                                        seconds: 5,
+                                              if (context.mounted) {
+                                                ScaffoldMessenger.of(
+                                                  context,
+                                                ).showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      errorMessage,
+                                                    ),
+                                                    backgroundColor:
+                                                        AppTheme.error,
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                        12,
                                                       ),
                                                     ),
-                                                  );
-                                                }
+                                                    duration: const Duration(
+                                                      seconds: 5,
+                                                    ),
+                                                  ),
+                                                );
                                               }
-                                            },
+                                            }
+                                          },
                                     icon: const Icon(
                                       Icons.g_mobiledata,
                                       size: 24,
@@ -582,9 +576,7 @@ class _LoginPageState extends State<LoginPage> {
                                         vertical: 16,
                                       ),
                                       side: BorderSide(
-                                        color: AppTheme.goldPrimary.withValues(
-                                          alpha: 0.3,
-                                        ),
+                                        color: AppTheme.goldPrimary.withOpacity(0.3),
                                         width: 2,
                                       ),
                                       shape: RoundedRectangleBorder(
@@ -600,8 +592,8 @@ class _LoginPageState extends State<LoginPage> {
                                     style: Theme.of(
                                       context,
                                     ).textTheme.bodySmall?.copyWith(
-                                      color: AppTheme.textTertiary,
-                                    ),
+                                          color: AppTheme.textTertiary,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -618,9 +610,7 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: BoxDecoration(
                               border: Border(
                                 top: BorderSide(
-                                  color: AppTheme.goldPrimary.withValues(
-                                    alpha: 0.2,
-                                  ),
+                                  color: AppTheme.goldPrimary.withOpacity(0.2),
                                   width: 1,
                                 ),
                               ),

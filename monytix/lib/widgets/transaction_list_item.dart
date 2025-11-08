@@ -87,9 +87,7 @@ class TransactionListItem extends StatelessWidget {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: AppTheme.goldPrimary.withValues(
-                                alpha: 0.15,
-                              ),
+                              color: AppTheme.goldPrimary.withOpacity(0.15),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(
