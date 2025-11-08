@@ -68,8 +68,26 @@ flutter pub get
 echo "🔨 Building Flutter web app..."
 echo "📁 Current directory: $(pwd)"
 echo "📄 Checking for main.dart:"
-ls -la lib/main.dart || echo "❌ main.dart not found in lib/"
-flutter build web --release --target=lib/main.dart
+if [ -f "lib/main.dart" ]; then
+  echo "✅ Found lib/main.dart"
+  ls -la lib/main.dart
+else
+  echo "❌ main.dart not found in lib/"
+  echo "📂 Listing lib directory:"
+  ls -la lib/ || echo "lib/ directory doesn't exist"
+  echo "📂 Listing current directory:"
+  ls -la
+  exit 1
+fi
+
+# Verify we're in the right directory
+if [ ! -f "pubspec.yaml" ]; then
+  echo "❌ Error: pubspec.yaml not found in current directory"
+  exit 1
+fi
+
+echo "✅ Building Flutter web app..."
+flutter build web --release
 
 # Add Cloudflare Pages _redirects file
 echo "📝 Adding _redirects file for SPA routing..."
