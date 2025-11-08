@@ -1,0 +1,9 @@
+# Android Keystore Properties
+# Copy this file to key.properties and fill in your actual values
+# DO NOT commit key.properties to version control
+
+storePassword=your-keystore-password
+keyPassword=your-key-password
+keyAlias=monytix
+storeFile=path/to/your/keystore.jks
+

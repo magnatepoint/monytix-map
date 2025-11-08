@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "PLACEHOLDER",
+    "project_id": "PLACEHOLDER",
+    "storage_bucket": "PLACEHOLDER"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "PLACEHOLDER",
+        "android_client_info": {
+          "package_name": "com.monytix.mpapk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "PLACEHOLDER",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.monytix.mpapk",
+            "certificate_hash": "PLACEHOLDER"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "PLACEHOLDER"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
+
