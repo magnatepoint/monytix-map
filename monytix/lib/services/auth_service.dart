@@ -55,28 +55,23 @@ class AuthService {
         debugPrint('🌐 Current origin: ${Uri.base.origin}');
         debugPrint('🌐 Full URL: ${Uri.base}');
         debugPrint('🌐 kIsWeb check: $kIsWeb');
-        
+
         // Double-check that we're on web and using HTTP/HTTPS
         assert(kIsWeb, 'This code should only run on web platform');
         assert(
-          redirectUrl.startsWith('http://') || redirectUrl.startsWith('https://'),
+          redirectUrl.startsWith('http://') ||
+              redirectUrl.startsWith('https://'),
           'Redirect URL must be HTTP/HTTPS for web: $redirectUrl',
         );
-        
-        final response = await supabase.auth.signInWithOAuth(
+
+        await supabase.auth.signInWithOAuth(
           OAuthProvider.google,
           redirectTo: redirectUrl,
           authScreenLaunchMode: LaunchMode.externalApplication,
         );
-        
-        debugPrint('🌐 OAuth response: $response');
-        debugPrint('🌐 OAuth URL: ${response.url}');
-        
-        // Verify the OAuth URL doesn't contain the custom scheme
-        if (response.url.contains('io.supabase.monytix://')) {
-          debugPrint('⚠️ WARNING: OAuth URL contains custom scheme! This means Supabase Dashboard Site URL is misconfigured.');
-          debugPrint('⚠️ Please update Supabase Dashboard Site URL to: $redirectUrl');
-        }
+
+        debugPrint('🌐 OAuth sign-in initiated with redirectTo: $redirectUrl');
+        debugPrint('🌐 If you see custom scheme errors, check Supabase Dashboard Site URL');
       } else {
         // For mobile, use custom URL scheme
         final redirectUrl = _getRedirectUrl();
